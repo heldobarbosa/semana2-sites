@@ -1,4 +1,4 @@
-# semana2-sites
+semana2-sites
 Trabalhando com NGINX
 Estes são os arquivos .conf que adicionei em /etc/nginx/conf.d 
 Usei a opção de colocar em /conf.d pela quantidade de sites pequena nesse projeto. 
@@ -6,8 +6,8 @@ Usei a opção de colocar em /conf.d pela quantidade de sites pequena nesse proj
 Por padrão:
 
 server {
-    listen       #[PORTA];
-    server_name  #[DOMÍNIO DOS SITES];
+    listen       [PORTA];
+    server_name  [DOMÍNIO DOS SITES];
 
     # note that these lines are originally from the "location /" block
     root   /var/www/html #[CAMINHO AO QUAL O NGINX DEVE BUSCAR O ARQUIVO A SER CARREGADO NA PÁGINA];
@@ -24,11 +24,11 @@ server {
         root /usr/share/nginx/html;
     }
 
-#    location ~ \.php$ {
-#        try_files $uri =404;
-#        fastcgi_pass unix:/var/run/php/php-fpm.sock; #CAMINHO DO SOCK QUE É USADO PARA CONEXÃO DO NGINX COM PHP
-#        fastcgi_index index.php;
-#        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-#        include fastcgi_params;
-#    }
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass unix:/var/run/php/php-fpm.sock; #CAMINHO DO SOCK QUE É USADO PARA CONEXÃO DO NGINX COM PHP
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
 }
