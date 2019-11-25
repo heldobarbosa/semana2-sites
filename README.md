@@ -32,3 +32,20 @@ server {
         include fastcgi_params;
     }
 }
+
+Como foi muito simples, em /var/www/html ficaram os arquivos responsáveis por cada página do site, ou seja, apenas no "site" houve um arquivo .html simples. No BLOG, coloquei os arquivos do WordPress descompactados, para que a página fosse carregada diretamente pelo domínio correspondente. 
+
+Nas demais coisas feitas, temos alguns detalhes como: 
+
+- Foi usado um mesmo banco mysql para o BLOG e a LOJA.
+- É importante dar permissão ao NGINX em todos os processos. Exemplo: "chown -R nginx:nginx /var/lib/php/session/"
+- O magento não aceita a última versão do PHP, no caso usei a 7.0.
+- É importante manter o Firewall desativado para conexão das portas, ou ainda, instalar o Firewalld para adicionar permissões de porta. 
+- Foi muito importante o uso de logs para obter um histórico do que aconteceu em cada erro. 
+
+Deixo aqui as fontes que usei para montar o ambiente:
+
+https://www.howtoforge.com/tutorial/how-to-install-magento-2-1-on-centos-7/
+https://darrenoneill.eu/?p=455
+
+
